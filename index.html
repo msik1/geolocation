@@ -55,8 +55,8 @@
     </div>
 
     <div id="deny" class="hidden">
-      <p class="err"><strong>Access denied.</strong> This form is only available at the specified location.</p>
-      <p class="muted">If you’re on-site but still see this message, ensure GPS is enabled, move closer to open sky, and try again.</p>
+      <p class="err"><strong>Access denied.</strong> This form is only available only with location access.</p>
+      <p class="muted">Check permission for location and try again.</p>
       <button class="btn" id="retry">Try again</button>
       <details style="margin-top: 10px;">
         <summary class="muted">Technical details</summary>
@@ -85,7 +85,7 @@
     const FORM_URL = "https://forms.gle/rdhuRs3PxwL2ehdo6"; // <-- change me
 
     // Optional: hard-fail if geolocation accuracy is too poor (meters). Set null to disable.
-    const REQUIRED_ACCURACY_M = 150; // e.g., require <=150m accuracy; increase for indoor use
+    const REQUIRED_ACCURACY_M = 250; // e.g., require <=150m accuracy; increase for indoor use
 
     // =================== /CONFIG ======================
 
@@ -135,7 +135,7 @@ Distance: ${Math.round(distance)} m`;
         statusEl.innerHTML = `<span class="ok">Inside area</span> — redirecting to form…`;
         window.location.replace(FORM_URL);
       } else {
-        showDeny("You are outside the allowed area.", details);
+        showDeny("You are outside the area.", details);
       }
     }
 
